@@ -8,25 +8,24 @@ public class Mountain {
     private int y;
     private int width;
     private int height;
+    private Color c;
 
-    public Mountain(Graphics2D gr, int x, int y, int width, int height) {
+    public Mountain(Graphics2D gr, int x, int y, int width, int height, Color c) {
         this.gr = gr;
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
+        this.c = c;
+    }
 
+    private int f(int k, int x, int b) {
+        return k*x + b;
     }
 
 
     public void drawMountain() {
-        Color main = new Color(59, 132, 164);
-        gr.setColor(main);
-        int[] xP = {x, x + width/2, x + width};
-        int[] yP = {y + height, y, y + height};
-        gr.fillPolygon(xP, yP, 3);
-        gr.setColor(Color.WHITE);
-        int[] xP2 = {x, x + width/2, x + width};
-        int[] yP2 = {y + height, y, y + height};
+        Primitives.drawTriangle(gr, x, y, width, height, c);
+        Primitives.drawTriangle(gr, (int) (x + Math.round(width*(42.5/100))), y, (int)(width*0.15), (int)(height*0.15), Color.WHITE);
     }
 }

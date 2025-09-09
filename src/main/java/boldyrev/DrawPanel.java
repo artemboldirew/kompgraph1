@@ -1,5 +1,6 @@
 package boldyrev;
 
+import boldyrev.shapes.Cloud;
 import boldyrev.shapes.Mountain;
 import boldyrev.shapes.Sun;
 
@@ -19,14 +20,20 @@ public class DrawPanel extends JPanel {
         Color snow2 = new Color(198, 219, 214);
         g.setColor(backgroundSky);
         g.fillRect(0,0,Config.width, Config.height);
-        Mountain m1 = new Mountain(g, -25, 334, 500, 450);
-        m1.drawMountain();
-        Mountain m2 = new Mountain(g, 270, 437, 390, 350);
+        Mountain m2 = new Mountain(g, 270, 437, 390, 350, new Color(33, 106, 138));
         m2.drawMountain();
+        Mountain m1 = new Mountain(g, -25, 334, 500, 450, new Color(59, 132, 164));
+        m1.drawMountain();
         g.setColor(snow);
         g.fillOval(-380, 663, 1065, 1065);
         g.fillOval(-63, 665, 1065, 1065);
         Sun sun = new Sun(g, 440, 81, 116);
         sun.drawSun();
+        Cloud cloud1 = new Cloud(g, 100, 200, 100);
+        cloud1.drawCloud();
+        Cloud cloud2 = new Cloud(g, 200, 220, 90);
+        cloud2.drawCloud();
+        Cloud cloud3 = new Cloud(g, 80, 270, 130);
+        cloud3.drawCloud();
     }
 }
