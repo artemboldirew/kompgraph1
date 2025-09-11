@@ -15,12 +15,16 @@ public class Cloud {
         this.width = width;
     }
 
+    private int getVal(double cnt) {
+        return (int)(width * cnt);
+    }
+
     public void drawCloud() {
         gr.setColor(Color.WHITE);
-        gr.fillOval(x, (int)(y + width*(2.0/10)), (int)(width*(2.0/10)), (int)(width*(2.0/10)));
-        gr.fillOval((int)(x + width*(1.0/10)), (int)(y + width*(1.0/10)), (int)(width*(2.0/10)), (int)(width*(2.0/10)));
-        gr.fillOval((int)(x + width*(3.0/10)), (int)(y + width*(2.0/10)), (int)(width*(2.0/10)), (int)(width*(2.0/10)));
-        gr.fillRect((int)(x + width*(1.0/10)), (int)(y + width*(2.0/10)), (int)(width*(3.0/10)), (int)(width*(2.0/10)));
+        gr.fillOval(x, y + getVal(0.222), getVal(0.32), getVal(0.32));
+        gr.fillOval(x + getVal(0.6767), y + getVal(0.222), getVal(0.32), getVal(0.32));
+        gr.fillOval(x + getVal(25.0/99), y, getVal(50.0/99), getVal(50.0/99));
+        gr.fillRect(x + getVal(15.0/99), y + getVal(39.5/99), getVal(66.0/99), getVal(14.0/99));
     }
 
 }
