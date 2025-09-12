@@ -1,5 +1,6 @@
 package boldyrev;
 
+import boldyrev.model.DrawUtils;
 import boldyrev.model.interfaces.IMovableShape;
 import boldyrev.model.interfaces.IShape;
 import boldyrev.model.interfaces.RepaintObserver;
@@ -20,10 +21,22 @@ public class DrawPanel extends JPanel implements RepaintObserver {
     public DrawPanel() {
         initializeShapes();
         Timer timer = new Timer(10, e -> {
-            sunAnimation(200);
+            sunAnimation(1000);
+            cloudAnimation();
             repaint();
         });
         timer.start();
+    }
+
+    private void cloudAnimation() {
+        picture.cloud1.transform(1, 0);
+        picture.cloud2.transform(1, 0);
+        picture.cloud3.transform(1, 0);
+        if (picture.cloud3.getX() > 640) {
+            picture.cloud1.moveTo(-180, 190);
+            picture.cloud2.moveTo(-80, 220);
+            picture.cloud3.moveTo(-200, 270);
+        }
     }
 
     private void sunAnimation(int speed) {
@@ -32,6 +45,7 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         int step = (end - start) / speed;
         Sun sun = picture.sun;
         int current = sun.getY();
+        double progress = ((end - current)*1.0) / (end - start);
         if (current > 689) {
             isDay = false;
             sun.moveTo(sun.getX(), 689);
@@ -41,19 +55,22 @@ public class DrawPanel extends JPanel implements RepaintObserver {
             sun.moveTo(sun.getX(), 81);
         }
         if (isDay) {
-            sun.transform(0, step);
+            sun.transform(0, 1);
         } else {
-            sun.transform(0, -step);
+            sun.transform(0, -1);
         }
-        sunColor();
+        sunColor(progress);
     }
 
-    public void sunColor() {
+    public void sunColor(double progress) {
+        Color skyStart = new Color(108, 166, 188);
+        Color skyEnd = new Color(6, 33, 43);
+        Color sunEnd = new Color(235, 103, 38);
         RadialGradientPaint gradient = new RadialGradientPaint(
                 new Point(picture.sun.getX() + 58, picture.sun.getY() + 58),    // Центральная точка
-                116,           // Радиус
+                116 + (float)(200*(1 - progress)),           // Радиус
                 new float[]{0.0f, 1.0f}, // Позиции цветов (0.0 - центр, 1.0 - край)
-                new Color[]{Color.YELLOW, new Color(108, 166, 188)} // Цвета
+                new Color[]{DrawUtils.interpolateColor(sunEnd, Color.YELLOW, progress), DrawUtils.interpolateColor(skyEnd, skyStart, progress)} // Цвета
         );
         picture.bgSky.setGradient(gradient);
     }
@@ -68,9 +85,12 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         Mountain m1 = new Mountain(-25, 334, 500, 450, new Color(59, 132, 164));
         Hills hills = new Hills(0,0,0);
         Sun sun = new Sun(440, 81, 116, this);
-        Cloud cloud1 = new Cloud(100, 190, 90, this);
-        Cloud cloud2 = new Cloud(200, 220, 90, this);
-        Cloud cloud3 = new Cloud(80, 270, 130, this);
+//        Cloud cloud1 = new Cloud(100, 190, 90, this);
+//        Cloud cloud2 = new Cloud(200, 220, 90, this);
+//        Cloud cloud3 = new Cloud(80, 270, 130, this);
+        Cloud cloud1 = new Cloud(-180, 190, 90, this);
+        Cloud cloud2 = new Cloud(-80, 220, 90, this);
+        Cloud cloud3 = new Cloud(-200, 270, 130, this);
         Tree tree1 = new Tree(21, 526, 148);
         Tree tree2 = new Tree(513, 551, 107);
         Tree tree3 = new Tree(439, 680, 132);
@@ -86,7 +106,7 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         allObjects.add(tree2);
         allObjects.add(tree3);
         this.picture = new Picture(m1, m2, sun, cloud1, cloud2, cloud3, tree1, tree2, tree2, bg);
-        sunColor();
+        sunColor(0.0);
     }
 
     @Override
@@ -98,31 +118,5 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         for (Shape sh: allObjects) {
             sh.draw(g);
         }
-//        Color backgroundSky = new Color(108, 166, 188);
-//        Color snow = new Color(198, 219, 214);
-//        Color snow2 = new Color(198, 219, 214);
-//        g.setColor(backgroundSky);
-//        g.fillRect(0,0,Config.width, Config.height);
-//        Mountain m2 = new Mountain(270, 437, 390, 350, new Color(33, 106, 138));
-//        m2.draw(g);
-//        Mountain m1 = new Mountain(-25, 334, 500, 450, new Color(59, 132, 164));
-//        m1.draw(g);
-//        g.setColor(snow);
-//        g.fillOval(-380, 663, 1065, 1065);
-//        g.fillOval(-63, 665, 1065, 1065);
-//        Sun sun = new Sun(440, 81, 116, this);
-//        sun.draw(g);
-//        Cloud cloud1 = new Cloud(100, 190, 90, this);
-//        cloud1.draw(g);
-//        Cloud cloud2 = new Cloud(200, 220, 90, this);
-//        cloud2.draw(g);
-//        Cloud cloud3 = new Cloud(80, 270, 130, this);
-//        cloud3.draw(g);
-//        Tree tree1 = new Tree(21, 526, 148);
-//        tree1.draw(g);
-//        Tree tree2 = new Tree(513, 551, 107);
-//        tree2.draw(g);
-//        Tree tree3 = new Tree(439, 680, 132);
-//        tree3.draw(g);
     }
 }
