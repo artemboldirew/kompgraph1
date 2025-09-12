@@ -2,7 +2,7 @@ package boldyrev.model.shape;
 
 import java.awt.*;
 
-public class Shape {
+public abstract class Shape {
     protected int x;
     protected int y;
     protected int width;
@@ -17,4 +17,17 @@ public class Shape {
         this.width = width;
     }
 
+    public abstract void draw(Graphics2D g);
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public int getWidth() {
+        return width;
+    }
 }

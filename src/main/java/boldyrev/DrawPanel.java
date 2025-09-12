@@ -1,5 +1,6 @@
 package boldyrev;
 
+import boldyrev.model.interfaces.IMovableShape;
 import boldyrev.model.interfaces.IShape;
 import boldyrev.model.interfaces.RepaintObserver;
 import boldyrev.model.shape.*;
@@ -13,9 +14,48 @@ import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
 public class DrawPanel extends JPanel implements RepaintObserver {
-    private List<IShape> allObjects = new ArrayList<>();
+    private List<Shape> allObjects = new ArrayList<>();
+    private Picture picture;
+    private Boolean isDay = true;
     public DrawPanel() {
         initializeShapes();
+        Timer timer = new Timer(10, e -> {
+            sunAnimation(200);
+            repaint();
+        });
+        timer.start();
+    }
+
+    private void sunAnimation(int speed) {
+        int start = 81;
+        int end = 689;
+        int step = (end - start) / speed;
+        Sun sun = picture.sun;
+        int current = sun.getY();
+        if (current > 689) {
+            isDay = false;
+            sun.moveTo(sun.getX(), 689);
+        }
+        if (current < 81) {
+            isDay = true;
+            sun.moveTo(sun.getX(), 81);
+        }
+        if (isDay) {
+            sun.transform(0, step);
+        } else {
+            sun.transform(0, -step);
+        }
+        sunColor();
+    }
+
+    public void sunColor() {
+        RadialGradientPaint gradient = new RadialGradientPaint(
+                new Point(picture.sun.getX() + 58, picture.sun.getY() + 58),    // Центральная точка
+                116,           // Радиус
+                new float[]{0.0f, 1.0f}, // Позиции цветов (0.0 - центр, 1.0 - край)
+                new Color[]{Color.YELLOW, new Color(108, 166, 188)} // Цвета
+        );
+        picture.bgSky.setGradient(gradient);
     }
 
     public void requestRepaint() {
@@ -35,16 +75,18 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         Tree tree2 = new Tree(513, 551, 107);
         Tree tree3 = new Tree(439, 680, 132);
         allObjects.add(bg);
+        allObjects.add(sun);
         allObjects.add(m2);
         allObjects.add(m1);
         allObjects.add(hills);
-        allObjects.add(sun);
         allObjects.add(cloud1);
         allObjects.add(cloud2);
         allObjects.add(cloud3);
         allObjects.add(tree1);
         allObjects.add(tree2);
         allObjects.add(tree3);
+        this.picture = new Picture(m1, m2, sun, cloud1, cloud2, cloud3, tree1, tree2, tree2, bg);
+        sunColor();
     }
 
     @Override
@@ -53,7 +95,7 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         Graphics2D g = (Graphics2D) gr;
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        for (IShape sh: allObjects) {
+        for (Shape sh: allObjects) {
             sh.draw(g);
         }
 //        Color backgroundSky = new Color(108, 166, 188);
