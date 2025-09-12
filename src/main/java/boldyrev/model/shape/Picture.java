@@ -11,8 +11,9 @@ public class Picture {
     public Tree tree2;
     public Tree tree3;
     public BackgroundSky bgSky;
+    public Moon moon;
 
-    public Picture(Mountain m1, Mountain m2, Sun sun, Cloud cloud1, Cloud cloud2, Cloud cloud3, Tree tree1, Tree tree2, Tree tree3, BackgroundSky bgSky) {
+    public Picture(Mountain m1, Mountain m2, Sun sun, Cloud cloud1, Cloud cloud2, Cloud cloud3, Tree tree1, Tree tree2, Tree tree3, BackgroundSky bgSky, Moon moon) {
         this.m2 = m2;
         this.m1 = m1;
         this.sun = sun;
@@ -23,5 +24,6 @@ public class Picture {
         this.tree2 = tree2;
         this.tree3 = tree3;
         this.bgSky = bgSky;
+        this.moon = moon;
     }
 }
