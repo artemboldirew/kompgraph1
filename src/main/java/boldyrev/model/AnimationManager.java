@@ -14,11 +14,18 @@ public class AnimationManager {
 
     public void dayNightAnimation(Picture pic) {
         int top = 81;
-        int down = 900;
+        int down = 800;
         MovableShape sh = isDay ? pic.sun : pic.moon;
         double progress = ((down - sh.getY())*1.0) / (down - top);
         RadialGradientPaint grad = getGradient(progress, new Point(sh.getX() + 58, sh.getY() + 58));
         pic.bgSky.setGradient(grad);
+        int trans = isDay ? Math.min(255, Math.max(0, (int)((1-(progress + 0.5))*255))) : 255;
+        Color starColor = new Color(255,255,255,trans);
+        //Color starColor = isDay ? new Color(255,255,255, 0) : new Color(255,255,255, (int)(255*progress));
+        pic.star1.setColor(starColor);
+        pic.star2.setColor(starColor);
+        pic.star3.setColor(starColor);
+
         if (isNotOnTop) {
             if (sh.getY() > 81) {
                 sh.transform(0, -1);
@@ -55,9 +62,10 @@ public class AnimationManager {
     }
 
     public RadialGradientPaint getGradient(double progress, Point p) {
+        float radius = isDay ? 116 + (float)(300*(1 - progress)) : 80;
         RadialGradientPaint gradient = new RadialGradientPaint(
                 p,    // Центральная точка
-                116 + (float)(200*(1 - progress)),           // Радиус
+                radius,           // Радиус
                 new float[]{0.0f, 1.0f}, // Позиции цветов (0.0 - центр, 1.0 - край)
                 dayNigthColors(progress)
                 //new Color[]{DrawUtils.interpolateColor(sunEnd, Color.YELLOW, progress), DrawUtils.interpolateColor(skyEnd, skyStart, progress)} // Цвета

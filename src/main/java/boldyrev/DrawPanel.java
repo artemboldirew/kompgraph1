@@ -105,7 +105,14 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         Tree tree2 = new Tree(513, 551, 107);
         Tree tree3 = new Tree(439, 680, 132);
         Moon moon = new Moon(440, 800, 116, this);
+        Star star1 = new Star(100, 100, 30, new Color(255,255,255,255));
+        Star star2 = new Star(150, 100, 20, new Color(255,255,255,255));
+        Star star3 = new Star(125, 160, 15, new Color(255,255,255,255));
+
         allObjects.add(bg);
+        allObjects.add(star1);
+        allObjects.add(star2);
+        allObjects.add(star3);
         allObjects.add(sun);
         allObjects.add(moon);
         allObjects.add(m2);
@@ -117,7 +124,7 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         allObjects.add(tree1);
         allObjects.add(tree2);
         allObjects.add(tree3);
-        this.picture = new Picture(m1, m2, sun, cloud1, cloud2, cloud3, tree1, tree2, tree2, bg, moon);
+        this.picture = new Picture(m1, m2, sun, cloud1, cloud2, cloud3, tree1, tree2, tree2, bg, moon, star1, star2, star3);
         sunColor(1.0);
     }
 

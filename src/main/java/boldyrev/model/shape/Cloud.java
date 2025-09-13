@@ -14,7 +14,7 @@ public class Cloud extends MovableShape implements IShape {
 
     @Override
     public void draw(Graphics2D gr) {
-        gr.setColor(Color.WHITE);
+        gr.setColor(new Color(255,255,255));
         gr.fillOval(x, y + getVal(0.222), getVal(0.32), getVal(0.32));
         gr.fillOval(x + getVal(0.6767), y + getVal(0.222), getVal(0.32), getVal(0.32));
         gr.fillOval(x + getVal(25.0/99), y, getVal(50.0/99), getVal(50.0/99));

@@ -12,7 +12,8 @@ public class Moon extends MovableShape implements IShape {
 
     @Override
     public void draw(Graphics2D g) {
-        g.setColor(Color.GRAY);
+         Color moonColor = new Color(189,208,228);
+        g.setColor(moonColor);
         g.fillOval(x, y, width, width);
     }
 }
