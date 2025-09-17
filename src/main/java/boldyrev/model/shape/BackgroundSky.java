@@ -2,6 +2,7 @@ package boldyrev.model.shape;
 
 import boldyrev.Config;
 import boldyrev.model.interfaces.IShape;
+import boldyrev.model.structure.Shape;
 
 import java.awt.*;
 

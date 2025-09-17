@@ -9,4 +9,10 @@ public class Primitives {
         int[] yP = {y + height, y, y + height};
         gr.fillPolygon(xP, yP, 3);
     }
+
+//    public static void bezierCurve(Graphics2D gr, Point[] points) {
+//        int accuracy = 1000;
+//        Point[] res = new Point[];
+//        for (int t = 0; t < 100; )
+//    }
 }

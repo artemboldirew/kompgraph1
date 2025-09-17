@@ -1,4 +1,4 @@
-package boldyrev.model.shape;
+package boldyrev.model.structure;
 
 import java.awt.*;
 

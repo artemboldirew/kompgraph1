@@ -1,8 +1,8 @@
 package boldyrev.model.shape;
 
-import boldyrev.DrawPanel;
 import boldyrev.model.interfaces.IShape;
 import boldyrev.model.interfaces.RepaintObserver;
+import boldyrev.model.structure.MovableShape;
 
 import java.awt.*;
 

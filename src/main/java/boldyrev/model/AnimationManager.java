@@ -1,8 +1,8 @@
 package boldyrev.model;
 
-import boldyrev.model.shape.MovableShape;
+import boldyrev.model.structure.MovableShape;
 import boldyrev.model.shape.Picture;
-import boldyrev.model.shape.Sun;
+import boldyrev.model.util.DrawUtils;
 
 import java.awt.*;
 
@@ -31,7 +31,7 @@ public class AnimationManager {
                 sh.transform(0, -1);
             }
             else {
-                sh.moveTo(440, 81);
+                sh.moveTo(300, 81);
                 noonCnt++;
                 if (noonCnt == 100) {
                     isNotOnTop = false;
@@ -43,7 +43,7 @@ public class AnimationManager {
                 sh.transform(0, 1);
             }
             else {
-                sh.moveTo(440, 900);
+                sh.moveTo(300, 900);
                 isDay = !isDay;
                 isNotOnTop = true;
             }
@@ -62,7 +62,7 @@ public class AnimationManager {
     }
 
     public RadialGradientPaint getGradient(double progress, Point p) {
-        float radius = isDay ? 116 + (float)(300*(1 - progress)) : 80;
+        float radius = isDay ? 116 + (float)(800*(1 - progress)) : 80;
         RadialGradientPaint gradient = new RadialGradientPaint(
                 p,    // Центральная точка
                 radius,           // Радиус

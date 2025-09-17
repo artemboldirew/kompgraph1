@@ -1,19 +1,16 @@
 package boldyrev;
 
 import boldyrev.model.AnimationManager;
-import boldyrev.model.DrawUtils;
-import boldyrev.model.interfaces.IMovableShape;
-import boldyrev.model.interfaces.IShape;
+import boldyrev.model.util.DrawUtils;
 import boldyrev.model.interfaces.RepaintObserver;
 import boldyrev.model.shape.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import boldyrev.model.shape.Shape;
+import boldyrev.model.structure.Shape;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 
 public class DrawPanel extends JPanel implements RepaintObserver {
     private List<Shape> allObjects = new ArrayList<>();
@@ -94,7 +91,8 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         Mountain m2 = new Mountain(270, 437, 390, 350, new Color(33, 106, 138));
         Mountain m1 = new Mountain(-25, 334, 500, 450, new Color(59, 132, 164));
         Hills hills = new Hills(0,0,0);
-        Sun sun = new Sun(440, 800, 116, this);
+        //Sun sun = new Sun(440, 800, 116, this);
+        Sun sun = new Sun(300, 800, 116, this);
 //        Cloud cloud1 = new Cloud(100, 190, 90, this);
 //        Cloud cloud2 = new Cloud(200, 220, 90, this);
 //        Cloud cloud3 = new Cloud(80, 270, 130, this);
@@ -104,7 +102,7 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         Tree tree1 = new Tree(21, 526, 148);
         Tree tree2 = new Tree(513, 551, 107);
         Tree tree3 = new Tree(439, 680, 132);
-        Moon moon = new Moon(440, 800, 116, this);
+        Moon moon = new Moon(300, 800, 116, this);
         Star star1 = new Star(100, 100, 30, new Color(255,255,255,255));
         Star star2 = new Star(150, 100, 20, new Color(255,255,255,255));
         Star star3 = new Star(125, 160, 15, new Color(255,255,255,255));

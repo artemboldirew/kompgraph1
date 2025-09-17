@@ -1,7 +1,7 @@
 package boldyrev.model.shape;
 
 import boldyrev.model.interfaces.IShape;
-import jdk.jfr.consumer.RecordedThreadGroup;
+import boldyrev.model.structure.Shape;
 
 import java.awt.*;
 import java.awt.geom.Area;
