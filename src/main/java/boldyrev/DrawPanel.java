@@ -91,11 +91,7 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         Mountain m2 = new Mountain(270, 437, 390, 350, new Color(33, 106, 138));
         Mountain m1 = new Mountain(-25, 334, 500, 450, new Color(59, 132, 164));
         Hills hills = new Hills(0,0,0);
-        //Sun sun = new Sun(440, 800, 116, this);
         Sun sun = new Sun(300, 800, 116, this);
-//        Cloud cloud1 = new Cloud(100, 190, 90, this);
-//        Cloud cloud2 = new Cloud(200, 220, 90, this);
-//        Cloud cloud3 = new Cloud(80, 270, 130, this);
         Cloud cloud1 = new Cloud(-180, 190, 90, this);
         Cloud cloud2 = new Cloud(-80, 220, 90, this);
         Cloud cloud3 = new Cloud(-200, 270, 130, this);
@@ -106,6 +102,7 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         Star star1 = new Star(100, 100, 30, new Color(255,255,255,255));
         Star star2 = new Star(150, 100, 20, new Color(255,255,255,255));
         Star star3 = new Star(125, 160, 15, new Color(255,255,255,255));
+        Road road = new Road(316, 690, 0);
 
         allObjects.add(bg);
         allObjects.add(star1);
@@ -116,6 +113,7 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         allObjects.add(m2);
         allObjects.add(m1);
         allObjects.add(hills);
+        allObjects.add(road);
         allObjects.add(cloud1);
         allObjects.add(cloud2);
         allObjects.add(cloud3);
