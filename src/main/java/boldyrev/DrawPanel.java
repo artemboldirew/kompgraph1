@@ -103,6 +103,7 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         Star star2 = new Star(150, 100, 20, new Color(255,255,255,255));
         Star star3 = new Star(125, 160, 15, new Color(255,255,255,255));
         Road road = new Road(316, 690, 0);
+        RoadSign roadSign = new RoadSign(323, 832, 50);
 
         allObjects.add(bg);
         allObjects.add(star1);
@@ -113,6 +114,7 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         allObjects.add(m2);
         allObjects.add(m1);
         allObjects.add(hills);
+        allObjects.add(roadSign);
         allObjects.add(road);
         allObjects.add(cloud1);
         allObjects.add(cloud2);

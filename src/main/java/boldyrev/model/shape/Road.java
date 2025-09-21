@@ -12,8 +12,8 @@ public class Road extends Shape {
     //(316;690)
     @Override
     public void draw(Graphics2D g) {
-        List<Point> rightSide = Primitives.generateCubicBezierCurve(new Point(x, y), new Point(438, 738), new Point(278, 860), new Point(385, 959), 100);
-        List<Point> leftSide = Primitives.generateCubicBezierCurve(new Point(x, y), new Point(400, 810), new Point(50, 876), new Point(300, 959), 100);
+        List<Point> rightSide = Primitives.generateCubicBezierCurve(new Point(316, 690), new Point(668, 727), new Point(24, 855), new Point(385, 959), 10000);
+        List<Point> leftSide = Primitives.generateCubicBezierCurve(new Point(316, 690), new Point(600, 728), new Point(1, 810), new Point(198, 959), 10000);
         Polygon road = new Polygon();
         for (Point p : leftSide) {
             road.addPoint(p.x, p.y);
@@ -21,6 +21,7 @@ public class Road extends Shape {
         for (Point p : rightSide) {
             road.addPoint(p.x, p.y);
         }
-        Primitives.fillBetweenCurves(g, leftSide, rightSide, Color.ORANGE);
+        Color roadColor = new Color(145, 197, 211);
+        Primitives.fillBetweenCurves(g, leftSide, rightSide, roadColor);
     }
 }
