@@ -8,5 +8,12 @@ public class   Main {
         mw.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mw.setSize(Config.width, Config.height);
         mw.setVisible(true);
+
+
+
+
+
+
+
     }
 }
