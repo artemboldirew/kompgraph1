@@ -122,6 +122,9 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         allObjects.add(tree1);
         allObjects.add(tree2);
         allObjects.add(tree3);
+//        if (allObjects.get(0) instanceof BackgroundSky bbg) {
+//            System.out.println(bbg.getX());
+//        }
         this.picture = new Picture(m1, m2, sun, cloud1, cloud2, cloud3, tree1, tree2, tree2, bg, moon, star1, star2, star3);
         sunColor(1.0);
     }

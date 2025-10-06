@@ -10,6 +10,7 @@ import java.awt.geom.Rectangle2D;
 
 public class Star extends Shape implements IShape {
     private Color color;
+
     public Star(int x, int y, int width, Color color) {
         super(x, y, width);
         this.color = color;
@@ -18,6 +19,9 @@ public class Star extends Shape implements IShape {
 
     @Override
     public void draw(Graphics2D g) {
+        /*if dayProv.isDay() {
+           return;
+        }*/
         int height = (int) (1.33*width);
         int w = (int) (0.5*width);
         int h = (int) (0.5*height);
