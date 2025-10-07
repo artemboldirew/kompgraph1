@@ -6,10 +6,8 @@ import boldyrev.model.interfaces.RepaintObserver;
 import java.awt.*;
 
 public abstract class MovableShape extends Shape implements IMovableShape{
-    protected RepaintObserver observer;
-    public MovableShape(int x, int y, int width, RepaintObserver observer) {
+    public MovableShape(int x, int y, int width) {
         super(x, y, width);
-        this.observer = observer;
     }
 
     public void transform(int dx, int dy) {

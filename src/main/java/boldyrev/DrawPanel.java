@@ -1,6 +1,7 @@
 package boldyrev;
 
 import boldyrev.model.AnimationManager;
+import boldyrev.model.DayNightProvider;
 import boldyrev.model.util.DrawUtils;
 import boldyrev.model.interfaces.RepaintObserver;
 import boldyrev.model.shape.*;
@@ -17,41 +18,20 @@ public class DrawPanel extends JPanel implements RepaintObserver {
     private Picture picture;
     private Boolean isDay = true;
     AnimationManager anm = new AnimationManager();
+    DayNightProvider dayNightProvider = new DayNightProvider();
     public DrawPanel() {
         initializeShapes();
         Timer timer = new Timer(10, e -> {
-            anm.dayNightAnimation(picture);
-            cloudAnimation();
+            dayNightProvider.nextFrame();
+            picture.animate();
+            //anm.dayNightAnimation(picture);
             repaint();
         });
         timer.start();
     }
 
-    private void cloudAnimation() {
-        picture.cloud1.transform(1, 0);
-        picture.cloud2.transform(1, 0);
-        picture.cloud3.transform(1, 0);
-        if (picture.cloud3.getX() > 640) {
-            picture.cloud1.moveTo(-180, 190);
-            picture.cloud2.moveTo(-80, 220);
-            picture.cloud3.moveTo(-200, 270);
-        }
-    }
 
-//    private void dayNightAnimation(int speed) {
-//        int start = 81;
-//        int end = 800;
-//        int step = (end - start) / speed;
-//        if (isDay) {
-//            if (picture.sun.getY() > 800) {
-//                isDay = false;
-//            } else {
-//                picture.sun.transform(0, step);
-//            }
-//        } else {
-//            if (picture.moon.getY() < 81);
-//        }
-//    }
+
 
 
     public void moonColor(double progress) {
@@ -87,18 +67,18 @@ public class DrawPanel extends JPanel implements RepaintObserver {
     }
 
     private void initializeShapes() {
-        BackgroundSky bg = new BackgroundSky(0,0,0,0);
+        BackgroundSky bg = new BackgroundSky(0,0,0,0, dayNightProvider);
         Mountain m2 = new Mountain(270, 437, 390, 350, new Color(33, 106, 138));
         Mountain m1 = new Mountain(-25, 334, 500, 450, new Color(59, 132, 164));
         Hills hills = new Hills(0,0,0);
-        Sun sun = new Sun(300, 800, 116, this);
-        Cloud cloud1 = new Cloud(-180, 190, 90, this);
-        Cloud cloud2 = new Cloud(-80, 220, 90, this);
-        Cloud cloud3 = new Cloud(-200, 270, 130, this);
+        Sun sun = new Sun(300, 800, 116);
+        Cloud cloud1 = new Cloud(-180, 190, 90);
+        Cloud cloud2 = new Cloud(-80, 220, 90);
+        Cloud cloud3 = new Cloud(-200, 270, 130);
         Tree tree1 = new Tree(21, 526, 148);
         Tree tree2 = new Tree(513, 551, 107);
         Tree tree3 = new Tree(439, 680, 132);
-        Moon moon = new Moon(300, 800, 116, this);
+        Moon moon = new Moon(300, 800, 116);
         Star star1 = new Star(100, 100, 30, new Color(255,255,255,255));
         Star star2 = new Star(150, 100, 20, new Color(255,255,255,255));
         Star star3 = new Star(125, 160, 15, new Color(255,255,255,255));
@@ -125,7 +105,7 @@ public class DrawPanel extends JPanel implements RepaintObserver {
 //        if (allObjects.get(0) instanceof BackgroundSky bbg) {
 //            System.out.println(bbg.getX());
 //        }
-        this.picture = new Picture(m1, m2, sun, cloud1, cloud2, cloud3, tree1, tree2, tree2, bg, moon, star1, star2, star3);
+        this.picture = new Picture(3, 3, dayNightProvider);
         sunColor(1.0);
     }
 
@@ -135,7 +115,7 @@ public class DrawPanel extends JPanel implements RepaintObserver {
         Graphics2D g = (Graphics2D) gr;
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
                 RenderingHints.VALUE_ANTIALIAS_ON);
-        for (Shape sh: allObjects) {
+        for (Shape sh: picture.getAllObjects()) {
             sh.draw(g);
         }
     }

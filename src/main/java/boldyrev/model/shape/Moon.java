@@ -7,8 +7,8 @@ import boldyrev.model.structure.MovableShape;
 import java.awt.*;
 
 public class Moon extends MovableShape implements IShape {
-     public Moon(int x, int y, int width, RepaintObserver observer) {
-        super(x, y, width, observer);
+     public Moon(int x, int y, int width) {
+        super(x, y, width);
     }
 
     @Override
