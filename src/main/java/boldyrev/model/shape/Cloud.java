@@ -9,8 +9,8 @@ import java.awt.*;
 public class Cloud extends MovableShape implements IShape {
 
 
-    public Cloud(int x, int y, int width, RepaintObserver observer) {
-        super(x, y, width, observer);
+    public Cloud(int x, int y, int width) {
+        super(x, y, width);
     }
 
     @Override

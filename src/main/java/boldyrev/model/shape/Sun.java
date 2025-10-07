@@ -8,8 +8,8 @@ import java.awt.*;
 
 public class Sun extends MovableShape implements IShape {
 
-    public Sun(int x, int y, int width, RepaintObserver observer) {
-        super(x, y, width, observer);
+    public Sun(int x, int y, int width) {
+        super(x, y, width);
     }
 
     @Override
