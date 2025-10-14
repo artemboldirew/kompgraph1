@@ -1,6 +1,6 @@
 package ru.vsu.cs.boldyrev.model.shape;
 
-import ru.vsu.cs.boldyrev.model.DayNightProvider;
+import ru.vsu.cs.boldyrev.model.provider.DayNightProvider;
 import ru.vsu.cs.boldyrev.model.interfaces.IShape;
 import ru.vsu.cs.boldyrev.model.structure.MovableShape;
 
@@ -25,4 +25,5 @@ public class SunMoon extends MovableShape implements IShape {
             gr.fillOval(x, y, width, width);
         }
     }
+
 }

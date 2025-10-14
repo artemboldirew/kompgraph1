@@ -1,7 +1,7 @@
-package ru.vsu.cs.boldyrev.model;
+package ru.vsu.cs.boldyrev.model.provider;
 
 public class DayNightProvider {
-    private int framesPerAnimation = 5000;
+    private int framesPerAnimation = 3800;
     private double progress = 1.0;
 
     public void nextFrame() {

@@ -1,6 +1,8 @@
 package ru.vsu.cs.boldyrev.model.shape;
 
-import ru.vsu.cs.boldyrev.model.DayNightProvider;
+import ru.vsu.cs.boldyrev.model.factory.StarFactory;
+import ru.vsu.cs.boldyrev.model.provider.CoordinateProvider;
+import ru.vsu.cs.boldyrev.model.provider.DayNightProvider;
 import ru.vsu.cs.boldyrev.model.factory.CloudFactory;
 import ru.vsu.cs.boldyrev.model.structure.MovableShape;
 import ru.vsu.cs.boldyrev.model.structure.Shape;
@@ -10,12 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Picture {
-    private int CLOUD_AMOUNT = 6;
-
+    private int CLOUD_AMOUNT;
+    private int STAR_AMOUNT;
     private DayNightProvider dayNightProvider;
     private List<List<Shape>> allObjects = new ArrayList<>();
 
-    private List<Shape> clouds = CloudFactory.getClouds(CLOUD_AMOUNT);
+    private List<Shape> clouds;
     private List<Shape> hiils = List.of(new Hills(0,0,0));
     private List<Shape> road = List.of(new Road(316, 690, 0));
     private List<Shape> mountains = List.of(new Mountain(270, 437, 390, 350, new Color(33, 106, 138)),
@@ -26,11 +28,15 @@ public class Picture {
     private List<Shape> bgSky;
     private List<Shape> stars;
 
-    public Picture(int treeAmount, int cloudAmount, DayNightProvider dayNightProvider) {
+    public Picture(int starAmount, int cloudAmount, DayNightProvider dayNightProvider) {
+        this.CLOUD_AMOUNT = cloudAmount;
+        this.STAR_AMOUNT = starAmount;
         this.dayNightProvider = dayNightProvider;
-        sunMoon = List.of(new SunMoon(300, 800, 116, dayNightProvider));
-        bgSky = List.of(new BackgroundSky(0,0,0,0, dayNightProvider));
-        stars = List.of(new Star(100, 100, 30, dayNightProvider), new Star(150, 100, 20, dayNightProvider), new Star(125, 160, 15, dayNightProvider));
+        SunMoon sunMoonObj = new SunMoon(300, 800, 116, dayNightProvider);
+        sunMoon = List.of(sunMoonObj);
+        bgSky = List.of(new BackgroundSky(0,0,0,0, dayNightProvider, sunMoonObj));
+        clouds = CloudFactory.getClouds(CLOUD_AMOUNT);
+        stars = StarFactory.getStars(STAR_AMOUNT, dayNightProvider);
         allObjects.add(bgSky);
         allObjects.add(stars);
         allObjects.add(sunMoon);
@@ -80,22 +86,8 @@ public class Picture {
         int start = 81;
         int end = 900;
         MovableShape sh = (MovableShape) sunMoon.get(0);
-        if (progress < 0.25) {
-            double curP = progress * 4;
-            sh.moveTo(300, (int) (81 + (900 - 81)*(1 - curP)));
-        }
-        else if (progress < 0.5) {
-            double curP = (progress - 0.25) / 0.25;
-            sh.moveTo(300, (int) (81 + (900 - 81)*curP));
-        }
-        else if (progress < 0.75) {
-            double curP = (progress - 0.5) / 0.25;
-            sh.moveTo(300, (int) (81 + (900 - 81)*(1 - curP)));
-        }
-        else {
-            double curP = (progress - 0.75) / 0.25;
-            sh.moveTo(300, (int) (81 + (900 - 81)*curP));
-        }
+        Point sun = CoordinateProvider.getSunCoordinate(progress);
+        sh.moveTo(sun.x, sun.y);
         //sh.moveTo(300, (int) (81 + (900 - 81)*(1-bbb)));
     }
 
