@@ -49,11 +49,11 @@ public class BackgroundSky extends Shape implements IShape {
         }
         radius = (float) Math.max(radius, 0.00001);
         RadialGradientPaint gradient = new RadialGradientPaint(
-                p,    // Центральная точка
-                radius,           // Радиус
-                new float[]{0.0f, 1.0f}, // Позиции цветов (0.0 - центр, 1.0 - край)
+                p,
+                radius,
+                new float[]{0.0f, 1.0f},
                 dayNigthColors(progress)
-                //new Color[]{DrawUtils.interpolateColor(sunEnd, Color.YELLOW, progress), DrawUtils.interpolateColor(skyEnd, skyStart, progress)} // Цвета
+
         );
         return gradient;
     }
@@ -70,9 +70,7 @@ public class BackgroundSky extends Shape implements IShape {
         }
     }
 
-    public void setGradient(RadialGradientPaint gradient) {
-        this.gradient = gradient;
-    }
+
 
 
 }

@@ -13,7 +13,6 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DrawPanel extends JPanel implements RepaintObserver {
-    private List<Shape> allObjects = new ArrayList<>();
     DayNightProvider dayNightProvider = new DayNightProvider();
     private Picture picture = new Picture(200, 8, dayNightProvider);
 

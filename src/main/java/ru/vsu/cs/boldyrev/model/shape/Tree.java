@@ -15,8 +15,6 @@ public class Tree extends Shape implements IShape {
     @Override
     public void draw(Graphics2D gr) {
         Color treeColor = new Color(26, 89, 124);
-        Color c1 = treeColor.darker();
-        Color c2 = treeColor.brighter();
         gr.setColor(treeColor);
         Primitives.drawTriangle(gr, x, y + getVal(59.0/148), width, getVal(125.0/148), treeColor);
         Primitives.drawTriangle(gr, x + getVal(6.0/148), y + getVal(31.0/148), getVal(136.0/148), getVal(99.0/148), treeColor);

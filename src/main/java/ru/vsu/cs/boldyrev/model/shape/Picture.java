@@ -61,7 +61,6 @@ public class Picture {
         for (Shape c : clouds) {
             if (c.getX() < 200) {
                 flag = false;
-//                clouds = CloudFactory.getClouds(3);
             }
         }
         if (flag) {
@@ -81,14 +80,9 @@ public class Picture {
 
     private void dayNightAnimation() {
         double progress = dayNightProvider.getProgress();
-        double mp = dayNightProvider.getProgress() > 0.5 ? progress / 2 : progress;
-        double bbb = dayNightProvider.getProgress() < 0.5 ? progress * 2 : (progress - 0.5) * 2;
-        int start = 81;
-        int end = 900;
-        MovableShape sh = (MovableShape) sunMoon.get(0);
+        MovableShape sh = (MovableShape) sunMoon.getFirst();
         Point sun = CoordinateProvider.getSunCoordinate(progress);
         sh.moveTo(sun.x, sun.y);
-        //sh.moveTo(300, (int) (81 + (900 - 81)*(1-bbb)));
     }
 
 

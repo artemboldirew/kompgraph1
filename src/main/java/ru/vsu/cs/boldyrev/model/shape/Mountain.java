@@ -22,7 +22,6 @@ public class Mountain extends Shape implements IShape {
         Primitives.drawTriangle(gr, x, y, width, height, c);
         int nw = (int) (width * 0.2);
         int nh = (int) (height * 0.2);
-        //Primitives.drawTriangle(gr, (int) (x + Math.round(width*(42.5/100))), y, (int)(width*0.15), (int)(height*0.15), Color.WHITE);
         Polygon p = new Polygon();
         p.addPoint(x + width/2, y);
         p.addPoint(x + getVal(0.4), y + nh);
