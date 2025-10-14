@@ -1,5 +1,6 @@
 package boldyrev.model.shape;
 
+import boldyrev.model.DayNightProvider;
 import boldyrev.model.interfaces.IShape;
 import boldyrev.model.structure.Shape;
 
@@ -9,11 +10,10 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
 public class Star extends Shape implements IShape {
-    private Color color;
-
-    public Star(int x, int y, int width, Color color) {
+    private DayNightProvider dayNightProvider;
+    public Star(int x, int y, int width, DayNightProvider dayNightProvider) {
         super(x, y, width);
-        this.color = color;
+        this.dayNightProvider = dayNightProvider;
         //this.radius = radius;
     }
 
@@ -38,11 +38,8 @@ public class Star extends Shape implements IShape {
             startArea.subtract(elipsArea);
         }
 
-        g.setColor(color);
+        g.setColor(Color.WHITE);
         g.fill(startArea);
     }
 
-    public void setColor(Color color) {
-        this.color = color;
-    }
 }
